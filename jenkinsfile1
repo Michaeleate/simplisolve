@@ -1,0 +1,47 @@
+pipeline {
+    agent any
+    parameters {
+        string(name: 'BRANCH_NAME', defaultValue: 'develop', description: 'Development Branch')
+    }
+    stages {
+        stage('Trigger-test') {
+            steps {
+                echo 'This triggered by Git Action'
+            }
+        }
+        stage('Download from Github') {
+            steps {
+                echo 'Downloaded from Github'
+                git branch:"${BRANCH_NAME}",
+                        credentialsId: "${git_credential}",
+                        url: "http://${repo_url}"
+                    commitId = sh (script: 'git rev-parse --short HEAD ${GIT_COMMIT}', returnStdout: true).trim()
+            }
+        }
+        stage('Checkout') {
+            steps {
+                script {
+                // The below will clone your repo and will be checked out to master branch by default.
+                git branch: 'master',
+                    credentialsId: '12345-1234-4696-af25-123455',
+                    url: 'ssh://git@bitbucket.org:company/repo.git'
+                
+                //ssh url then your credentials must be username + private key. 
+                //https url then credentials should be username + password.
+
+                // Do a ls -lart to view all the files are cloned. It will be clnned. This is just for you to be sure about it.
+                sh "ls -lart ./*" 
+                // List all branches in your repo. 
+                sh "git branch -a"
+                // Checkout to a specific branch in your repo.
+                //sh "git checkout branchname"
+                }
+            }
+        }
+        stage('Upload to S3') {
+            steps {
+                echo 'Uploaded to S3'
+            }
+        }
+    }
+}

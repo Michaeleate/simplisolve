@@ -15,7 +15,10 @@ pipeline {
         notify_text = "image upload to s3 <br>${api_imagename}: <${api_res_url}><br> ${auth_imagename}: <${auth_res_url}><br>tag by ${TAG_NAME}"
         
     }
-    
+    parameters {
+        string(name: 'BRANCH_NAME', defaultValue: 'develop', description: 'Development Branch')
+    }
+
     //tools {
     //     Install the Maven version and add it to the path.
     //    maven "maven-3.3.9"
@@ -55,7 +58,7 @@ stages {
                     sh "docker images"
                 }
             }
-        } */
+        } 
 
         stage("Zip"){
             steps{
@@ -65,7 +68,8 @@ stages {
                     sh "docker save ${auth_imagename}:latest > ${auth_imagename}-${TAG_NAME}.tar.gz"
                 }
             }
-        }
+        } */
+
         stage("Upload"){
             steps{
                 withAWS(region:"${region}", credentials:"${aws_credential}"){

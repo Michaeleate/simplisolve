@@ -1,0 +1,36 @@
+pipeline {
+    agent any
+    parameters {
+        string(name: 'BRANCH_NAME', defaultValue: 'develop', description: 'Development Branch')
+        string(name: 'AWS_DEFAULT_REGION', defaultValue: 'aws region', description: 'AWS Region')
+        string(name: 'S3_URL', defaultValue: 's3_url', description: 'Provide S3 URL')
+        string(name: 'REPO_URL', defaultValue: 'repo_url', description: 'Provide Git Repo URL')
+    }
+    stages {
+        stage('Trigger-test') {
+            steps {
+                echo 'This triggered by Git Action'
+            }
+        }
+        stage('Download from Github') {
+            steps {
+                echo 'Downloaded from Github'
+                git branch: "${BRANCH_NAME}",
+                credentialsId: "${git_credential}",
+                url: "${REPO_URL}"
+                sh "git branch -a"
+            }
+        }
+
+        stage('Upload to S3') {
+            steps {
+                echo 'Uploaded to S3'
+                sh "aws configure set region $AWS_DEFAULT_REGION" 
+                sh "aws configure set aws_access_key_id $AWS_ACCESS_KEY_ID"  
+                sh "aws configure set aws_secret_access_key $AWS_SECRET_ACCESS_KEY"
+                sh "aws s3 cp Code/index.html $S3_URL"
+                //sh "aws s3 sync temp_zip_contents s3://aws-lake/test/test_contents"
+            }
+        }
+    }
+}

@@ -19,3 +19,16 @@ Payload URL: Jekins Build URL as I am using local host... its not possible to gi
     Step 6: Create Jenkins File.
     
     This is it.
+
+    Set the Jenkins API token as the GitHub webhook secret token
+    jenkins api token - 1186c14e398da9152c7480fd673ced1931
+
+
+
+    You're using 'Known hosts file' strategy to verify ssh host keys, but your known_hosts file does not exist, please go to 'Manage Jenkins' -> 'Security' -> 'Git Host Key Verification Configuration' and configure host key verification.
+
+
+    Following are the steps.
+    1. Create AWS_CREDENTIAL_ID for AWS Credentials.
+    2. Create GIT_CREDENTIAL_ID for GIt credentials.
+    3. Check this jenkins file.
