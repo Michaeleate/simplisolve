@@ -12,6 +12,7 @@ jobs:
 
     - name: Display Current Directory
       run: pwd
+      run: ls -ltra
       shell: bash
 
     - name: Install dependencies
