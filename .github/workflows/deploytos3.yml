@@ -10,6 +10,10 @@ jobs:
     steps:
     - uses: actions/checkout@v3
 
+    - name: Display Current Directory
+      run: pwd
+      shell: bash
+
     - name: Install dependencies
       run: yarn
 
