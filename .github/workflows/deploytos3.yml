@@ -9,8 +9,8 @@ jobs:
       AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
     steps:
     - uses: actions/checkout@v3
-      with:
-          dry-run: true
+#      with:
+#          dry-run: true
 
     - name: Display Current Directory
       run: |
@@ -30,6 +30,7 @@ jobs:
           folder: simplisolve
           bucket: ${{ secrets.S3_BUCKET }}
           bucket-region: ${{ secrets.S3_BUCKET_REGION }}
+          dry-run: true
 #          delete-removed: true
 #          no-cache: true
 #          private: true
