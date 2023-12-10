@@ -146,9 +146,9 @@ S3 Deploy.
                     folder: build
                     bucket: ${{ secrets.S3_BUCKET }}
                     bucket-region: ${{ secrets.S3_BUCKET_REGION }}
-                    dist-id: ${{ secrets.CLOUDFRONT_DISTRIBUTION_ID }}
-                    invalidation: /
-                    delete-removed: true
+#                    dist-id: ${{ secrets.CLOUDFRONT_DISTRIBUTION_ID }}
+#                    invalidation: /
+                    delete-removed: true    
                     no-cache: true
                     private: true
                     files-to-include: '{.*/**,**}'

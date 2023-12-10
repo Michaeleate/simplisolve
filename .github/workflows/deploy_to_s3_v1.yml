@@ -18,6 +18,7 @@ jobs:
         pwd
         ls -ltra
         aws --version
+        echo $AWS_ACCESS_KEY_ID
 #        cd
 #        pwd
       shell: bash
