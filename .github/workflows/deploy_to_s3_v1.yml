@@ -23,7 +23,7 @@ jobs:
 #        pwd
       shell: bash
       env:
-      AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
 
     - name: Deploy using CLI
       run: |
