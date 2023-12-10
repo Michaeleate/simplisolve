@@ -17,8 +17,8 @@ jobs:
         pwd
         ls -ltra
         aws --version
-        cd
-        pwd
+#        cd
+#        pwd
       shell: bash
 
     - name: Deploy using CLI
