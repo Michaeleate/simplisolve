@@ -22,7 +22,8 @@ jobs:
 
     - name: Deploy using CLI
       run: |
-        aws configure set region $AWS_DEFAULT_REGION --dry-run
+#        aws configure set region $AWS_DEFAULT_REGION --dry-run
+        aws configure set region Global
         aws configure set aws_access_key_id $AWS_ACCESS_KEY_ID  
         aws configure set aws_secret_access_key $AWS_SECRET_ACCESS_KEY
 #        aws s3 cp jenkinsfile $S3_URL
@@ -45,4 +46,3 @@ jobs:
 #          no-cache: true
 #          private: true
 #          files-to-include: '{.*/**,**}'      
-    
